@@ -1,0 +1,49 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-select-panel::-webkit-scrollbar{
+      display: none;
+  }
+
+  .example-radio-group {
+    display: block;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 15px;
+  }
+
+  .mat-form-field, .radio-group{
+      width: 60%;
+      margin-right: 10%;
+  }
+   form{
+      width: 100%;
+    } 
+
+  .mat-grid-tile, .mat-figure{
+      display: block !important;
+  }
+
+  .switch{
+      width: 100%;
+  }
+
+  .switchClass{
+      width: 100% !important;
+  }
+
+@media only screen and (max-width: 576px){
+    .mat-form-field, .radio-group{
+        width: 96%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .mat-form-field, .radio-group{
+        width: 90%;
+        margin-right: 10%;
+    }
+}

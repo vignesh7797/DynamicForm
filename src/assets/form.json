@@ -1,0 +1,53 @@
+[
+    {
+      "id":"FirstName",
+      "Label":"First Name",
+      "Type":"input"
+    },
+    {
+      "id":"LastName",
+      "Label":"Last Name",
+      "Type":"input"
+    },
+    {
+      "id":"EmailId",
+      "Label":"Email Id",
+      "Type":"input"
+    },
+    {
+      "id":"PhoneNo",
+      "Label":"Phone No",
+      "Type":"input"
+    },
+    {
+      "id":"Gender",
+      "Label":"Gender",
+      "Type":"radio",
+      "Value":["Male", "Female", "Other"]
+    },
+    {
+      "id":"DOB",
+      "Label":"Date of Birth",
+      "Type":"date"
+    },
+    {
+      "id":"Address",
+      "Label":"Address",
+      "Type":"input"
+    },
+    {
+      "id":"State",
+      "Label":"State",
+      "Type":"select"
+    },
+    {
+      "id":"District",
+      "Label":"District",
+      "Type":"select"
+    },
+    {
+      "id":"Pincode",
+      "Label":"Pincode",
+      "Type":"input"
+    }
+  ]
