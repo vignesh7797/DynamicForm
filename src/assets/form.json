@@ -2,52 +2,94 @@
     {
       "id":"FirstName",
       "Label":"First Name",
-      "Type":"input"
+      "Type":"input",
+      "Validation":{
+                  "required":true,
+                  "min":5,
+                  "type":"text"
+                  }
     },
     {
       "id":"LastName",
       "Label":"Last Name",
-      "Type":"input"
+      "Type":"input",
+      "Validation":{
+                  "required":true,
+                  "type":"text"
+                  }
     },
     {
       "id":"EmailId",
       "Label":"Email Id",
-      "Type":"input"
+      "Type":"input",
+      "Validation":{
+                  "required":true,
+                  "type":"email"
+                  }
     },
     {
       "id":"PhoneNo",
       "Label":"Phone No",
-      "Type":"input"
+      "Type":"input",
+      "Validation":{
+                    "required":true,
+                    "type":"number",
+                    "min":10,
+                    "max":10
+                    }
     },
     {
       "id":"Gender",
       "Label":"Gender",
       "Type":"radio",
-      "Value":["Male", "Female", "Other"]
+      "Value":["Male", "Female", "Other"],
+      "Checked":[true, false, false],
+      "Validation":{
+                  "required":true
+                  }
     },
     {
       "id":"DOB",
       "Label":"Date of Birth",
-      "Type":"date"
+      "Type":"date",
+      "Validation":{
+                    "required":true
+                    }
     },
     {
       "id":"Address",
       "Label":"Address",
-      "Type":"input"
+      "Type":"input",
+      "Validation":{
+                  "required":true,
+                  "type":"text"
+                  }
     },
     {
       "id":"State",
       "Label":"State",
-      "Type":"select"
+      "Type":"select",
+      "Validation":{
+                  "required":true
+                  }
     },
     {
       "id":"District",
       "Label":"District",
-      "Type":"select"
+      "Type":"select",
+      "Validation":{
+                  "required":true
+                  }
     },
     {
       "id":"Pincode",
       "Label":"Pincode",
-      "Type":"input"
+      "Type":"input",
+      "Validation":{
+                    "required":true,
+                    "type":"number",
+                    "min":6,
+                    "max":6
+                    } 
     }
   ]

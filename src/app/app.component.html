@@ -10,7 +10,7 @@
   <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
   <mat-grid-tile colspan="5" rowspan="10">
 
-    <form [formGroup]="registerForm">
+    <form [formGroup]="registerForm" (ngSubmit)="OnSubmit()">
 
       <mat-grid-list cols="4" rowHeight="100px">
       
@@ -23,20 +23,25 @@
                 <div class="switchClass"  *ngSwitchCase="'input'">
                   <mat-form-field appearance="outline">
                     <mat-label>{{array.Label}}</mat-label>
-                    <input matInput [formControlName]="array.id">
+                    <input [type]="array.Validation.type" matInput [formControlName]="array.id">
+                    <mat-error *ngIf="registerForm.get(array.id).errors && registerForm.get(array.id).dirty || registerForm.get(array.id).touched || !registerForm.get(array.id).valid">
+                      <span *ngIf="registerForm.get(array.id).hasError('required')">This {{array.Label}} is Required</span>
+                      <span *ngIf="registerForm.get(array.id).hasError('min') || registerForm.get(array.id).hasError('max')">{{array.Label}} must be {{array.Validation.min}} digits</span>
+                      <span *ngIf="registerForm.get(array.id).hasError('email')">Enter Valid {{array.Label}}</span>
+                    </mat-error>
                   </mat-form-field>
-      
                 </div>
       
                 <div class="switchClass radio-group" *ngSwitchCase="'radio'">
       
                   <label id="example-radio-group-label">{{array.Label}}</label>
                   <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [formControlName]="array.id">
-                    <mat-radio-button class="example-radio-button" color="primary" *ngFor="let val of array.Value" [value]="val">
+                    <mat-radio-button class="example-radio-button" color="primary" *ngFor="let val of array.Value; let i = index" [value]="val" [checked]="array.Checked[i]">
                       {{val}}
-                    </mat-radio-button>
+                    </mat-radio-button> 
+                   
                   </mat-radio-group>
-                
+                 
                 </div>
                 
                 <div class="switchClass" *ngSwitchCase="'select'">
@@ -49,17 +54,21 @@
                             <mat-option value="-1">Select</mat-option>
                             <mat-option *ngFor="let val of states" [value]="val.state">{{val.state}}</mat-option>
                           </mat-select>
+                          <mat-error *ngIf="registerForm.get(array.id).dirty || registerForm.get(array.id).touched || !registerForm.get(array.id).valid">{{array.Label}} is Required*  </mat-error>
                         </mat-form-field>
-                        {{SelectedState}}
+                        
                       </div>
       
                       <div *ngSwitchCase="'District'">
                         <mat-form-field appearance="outline">
                           <mat-label>{{array.Label}}</mat-label>
                           <mat-select [formControlName]="array.id">
-                            <mat-option value="-1">Select</mat-option>
+                            <mat-option *ngIf="!district" value="-1">Select</mat-option>
+                            <mat-option *ngIf="district" value="-1" disabled>Select State First</mat-option>
                             <mat-option *ngFor="let val of district" [value]="val">{{val}}</mat-option>
                           </mat-select>
+                          <mat-error *ngIf="registerForm.get(array.id).dirty || registerForm.get(array.id).touched || !registerForm.get(array.id).valid">{{array.Label}} is Required*  </mat-error>
+
                         </mat-form-field>
                       </div>
       
@@ -71,10 +80,12 @@
                 
                 <div class="switchClass" *ngSwitchCase="'date'">
                   <mat-form-field appearance="outline">
-                    <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker" [formControlName]="array.id">
+                    <mat-label>{{array.Label}}</mat-label>
+                    <input matInput  [matDatepicker]="picker" [formControlName]="array.id" readonly>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="registerForm.get(array.id).dirty || registerForm.get(array.id).touched || !registerForm.get(array.id).valid">{{array.Label}} is Required*  </mat-error>
+
                   </mat-form-field>
                 </div>
       
@@ -97,5 +108,5 @@
     
    
 <div>
-  <p>{{registerForm.value| json}}</p>
+  <p>{{submittedData}}
 </div>

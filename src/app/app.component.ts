@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { element } from 'protractor';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,37 +14,47 @@ export class AppComponent implements OnInit{
   states: any;
   district:any;
   registerForm:FormGroup;
+  submittedData;
 
-  constructor(private http: HttpClient, private builder:FormBuilder) {   }
 
-  ngOnInit(){
+  constructor(private http: HttpClient, private builder:FormBuilder) {  
 
     this.registerForm = this.builder.group({
-
+      FirstName:[null, Validators.required],
+      LastName:[null, Validators.required],
+      EmailId:[null, [Validators.required, Validators.email]],
+      PhoneNo:[null, [Validators.required, Validators.max(9999999999), Validators.min(1000000000)]],
+      Gender:[null],
+      DOB:[null, [Validators.required]],
+      Address:[null, Validators.required],
+      State:[null, Validators.required],
+      District:[null, Validators.required],
+      Pincode:[null, [Validators.required, Validators.max(999999), Validators.min(100000)]]
     });
 
+   }
+
+   get f() {
+    return this.registerForm.controls;
+  }
+
+  ngOnInit(){
 
     this.http.get("/assets/form.json").subscribe(data => {
       this.dynamicFormArray = data;
       console.log(this.dynamicFormArray);
     });
+    
     this.http.get("/assets/states.json").subscribe(data => {
       this.states = data;
       console.log(this.states);
-      this.district=this.states[0].districts;
-      this.formControl();
-    });
+      this.district=[];
+      
+    });    
     
   }
 
-
-  formControl(){
-    this.dynamicFormArray.forEach(element =>{
-      this.registerForm.addControl(element.id, new FormControl(''));
-    });
-
-    console.log(this.registerForm.controls)
-  }
+  
 
 
 
@@ -54,5 +63,14 @@ export class AppComponent implements OnInit{
     this.district = this.states[index].districts;
     console.log(e, index)
   }
+
+  OnSubmit(){
+   if(this.registerForm.valid){
+    this.submittedData =JSON.parse(this.registerForm.value);
+    console.log(this.submittedData);
+   }
+  }
+
+  
 
 }
