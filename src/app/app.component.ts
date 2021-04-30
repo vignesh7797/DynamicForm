@@ -1,11 +1,11 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, KeyValue } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface Data{
-  FormData;
+export interface DialogData {
+  dataforDialog;
 }
 
 @Component({
@@ -24,20 +24,9 @@ export class AppComponent implements OnInit{
   maxdate = new Date().toISOString().split("T")[0];
 
 
-  constructor(private http: HttpClient, private builder:FormBuilder) {  
+  constructor(private http: HttpClient, private builder:FormBuilder, public dialog: MatDialog) {  
 
-    // this.registerForm = this.builder.group({
-    //   FirstName:[null, Validators.required],
-    //   LastName:[null, Validators.required],
-    //   EmailId:[null, [Validators.required, Validators.email]],
-    //   PhoneNo:[null, [Validators.required, Validators.max(9999999999), Validators.min(1000000000)]],
-    //   Gender:[null],
-    //   DOB:[null, [Validators.required]],
-    //   Address:[null, Validators.required],
-    //   State:[null, Validators.required],
-    //   District:[null, Validators.required],
-    //   Pincode:[null, [Validators.required, Validators.max(999999), Validators.min(100000)]]
-    // });
+ 
 
     this.registerForm = this.builder.group({});
 
@@ -112,9 +101,51 @@ export class AppComponent implements OnInit{
     Object.keys(this.registerForm.controls).forEach(key => {
       this.registerForm.get(key).setErrors(null) ;
     });
+
+    this.openDialog()
     }
    }
+
+
+
+
+   openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width:'30vw',
+      data: {dataforDialog : this.submittedData}
+    });
+
+  }
   
 
 }
 
+
+
+
+
+
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview.html',
+  styleUrls:['./app.component.css']
+})
+export class DialogOverviewExampleDialog {
+
+  formdata;
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      this.formdata = this.data.dataforDialog;
+    }
+
+    originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+      return 0;
+    }
+
+   
+
+}

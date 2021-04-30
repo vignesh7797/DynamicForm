@@ -1,0 +1,13 @@
+<button mat-fab class="dialog-close" color="primary" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+</button>
+
+<h1 mat-dialog-title>Hi {{formdata.FirstName}} !</h1> 
+<br>
+<br>
+<div mat-dialog-content>
+    <div *ngFor="let item of formdata | keyvalue: originalOrder">
+        <h3><span style="font-weight:900; font-size:120%;">{{item.key}}</span>   :   {{item.value}}</h3>
+    </div>
+</div>
+

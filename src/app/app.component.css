@@ -58,3 +58,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.dialog-close{
+    position: relative;
+    left: 85%;
+}

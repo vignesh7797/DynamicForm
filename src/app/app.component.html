@@ -6,9 +6,9 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-grid-list cols="7" rowHeight="10vh">
-  <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
-  <mat-grid-tile colspan="5" rowspan="10">
+<mat-grid-list cols="10" rowHeight="9vh">
+  <mat-grid-tile colspan="2" rowspan="1"></mat-grid-tile>
+  <mat-grid-tile colspan="6" rowspan="10">
 
     <form [formGroup]="registerForm" (ngSubmit)="OnSubmit()">
 
@@ -103,12 +103,6 @@
     </form>
 
   </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1"></mat-grid-tile>
 </mat-grid-list>
     
-   
-<div>
-  <div *ngFor="let item of submittedData| keyvalue">
-    {{ item.key }}  -  {{ item.value }}
-  </div>
-</div>

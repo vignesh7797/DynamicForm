@@ -57,15 +57,6 @@
                     }
     },
     {
-      "id":"Address",
-      "Label":"Address",
-      "Type":"input",
-      "Validation":{
-                  "required":true,
-                  "type":"text"
-                  }
-    },
-    {
       "id":"State",
       "Label":"State",
       "Type":"select",
@@ -79,6 +70,15 @@
       "Type":"select",
       "Validation":{
                   "required":true
+                  }
+    },
+    {
+      "id":"Address",
+      "Label":"Address",
+      "Type":"input",
+      "Validation":{
+                  "required":true,
+                  "type":"text"
                   }
     },
     {
