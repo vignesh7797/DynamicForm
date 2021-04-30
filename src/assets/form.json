@@ -34,8 +34,8 @@
       "Validation":{
                     "required":true,
                     "type":"number",
-                    "min":10,
-                    "max":10
+                    "min":1000000000,
+                    "max":9999999999
                     }
     },
     {
@@ -45,7 +45,7 @@
       "Value":["Male", "Female", "Other"],
       "Checked":[true, false, false],
       "Validation":{
-                  "required":true
+                  "required":false
                   }
     },
     {
@@ -88,8 +88,8 @@
       "Validation":{
                     "required":true,
                     "type":"number",
-                    "min":6,
-                    "max":6
+                    "min":100000,
+                    "max":999999
                     } 
     }
   ]
